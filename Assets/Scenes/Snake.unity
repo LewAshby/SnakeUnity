@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segmentPrefab: {fileID: 6492508106738154166, guid: 6afe6ea4396fbc04ab48ec696c801d42, type: 3}
-  initialSize: 1
+  initialSize: 4
   dir_x: 0
   dir_y: 0
 --- !u!114 &1168295527

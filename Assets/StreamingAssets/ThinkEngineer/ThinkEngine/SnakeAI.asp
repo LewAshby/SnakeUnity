@@ -21,10 +21,12 @@ up_bound(Y) :- wallUp(wall,objectIndex(Index),floatToInt(y(Y))).
 low_bound(Y) :- wallLow(wall,objectIndex(Index),floatToInt(y(Y))).
 
 snake(X,Y) :- snakeSensor(snake,objectIndex(Index),floatToInt(x(X))), snakeSensor(snake,objectIndex(Index),floatToInt(y(Y))).
-snake_segments(X,Y) :- snakeSegmentSensor(snakeSegment,objectIndex(Index),floatToInt(x(X))), snakeSegmentSensor(snakeSegment,objectIndex(Index),floatToInt(y(Y))).
+snake_segments(X,Y) :- snakeSegmentSensor(SnakeSegment,objectIndex(Index),floatToInt(x(X))), snakeSegmentSensor(SnakeSegment,objectIndex(Index),floatToInt(y(Y))).
 
 {next_direction(X,Y) : direction(X,Y)} = 1.
 next_position(X,Y) :- snake(Xs,Ys), next_direction(Xd,Yd), X=Xs+Xd, Y=Ys+Yd.
+
+:- snake_segments(X,Y), next_position(X, Y).
 
 :- next_direction(X,Y), X<X1, left_bound(X1).
 :- next_direction(X,Y), X>X1, right_bound(X1).
