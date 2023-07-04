@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,7 +11,8 @@ public class Snake : MonoBehaviour
     public Transform segmentPrefab;
     public int initialSize = 4;
     TextMeshProUGUI score;
-    private float speed_factor = 0.1f;
+    private float speed_factor = 0.02f;
+    private float deltaTime = 0.2f;
     public int dir_x;
     public int dir_y;
     private Vector2 input;
@@ -76,9 +78,9 @@ public class Snake : MonoBehaviour
         _segments.Add(segment);
         score.text = $"Score: {_segments.Count - initialSize}";
 
-        if(_segments.Count % 10 == 0)
+        if((_segments.Count - initialSize) % 3 == 0)
         {
-            speed_factor += 0.1f;
+            Time.fixedDeltaTime -= speed_factor;
         }
 
     }
@@ -105,6 +107,7 @@ public class Snake : MonoBehaviour
             score = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         }
         score.text = $"Score: 0";
+        Time.fixedDeltaTime = deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
