@@ -28,10 +28,10 @@ next_position(X,Y) :- snake(Xs,Ys), next_direction(Xd,Yd), X=Xs+Xd, Y=Ys+Yd.
 
 :- snake_segments(X,Y), next_position(X, Y).
 
-:- next_direction(X,Y), X<X1, left_bound(X1).
-:- next_direction(X,Y), X>X1, right_bound(X1).
-:- next_direction(X,Y), Y<Y1, low_bound(Y1).
-:- next_direction(X,Y), Y>Y1, up_bound(Y1).
+:- next_position(X,Y), X<X1, left_bound(X1).
+:- next_position(X,Y), X>X1, right_bound(X1).
+:- next_position(X,Y), Y<Y1, low_bound(Y1).
+:- next_position(X,Y), Y>Y1, up_bound(Y1).
 
 
 closer_x :- food(Xf,Yf), next_position(Xs,Ys), snake(X1,Y1), &abs(Xs-Xf; Dx), &abs(X1-Xf; Dx1), Dx<Dx1.
